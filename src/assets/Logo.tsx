@@ -42,12 +42,12 @@ export function Logo({ variant = 'full', className = '', theme }: LogoProps) {
 
   return (
     <div className="flex items-center gap-2">
-    <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-purple">
+      <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-brand-purple">
         <span className="text-sm font-bold text-white">D</span>
-    </div>
-    <span className="text-lg font-bold tracking-tight text-foreground">
-            Disrupt<span className="text-brand-purple">.hub</span>
-          </span>
+      </div>
+      <span className="text-lg font-bold tracking-tight" style={{ color: textColor }}>
+        Disrupt<span className="text-brand-purple">.hub</span>
+      </span>
     </div>
   )
 }

@@ -56,9 +56,29 @@ export function Footer() {
           <p className="text-xs text-[#71717A]">
             © {year} Disrupt Hub ApS. All rights reserved.
           </p>
-          <p className="text-xs text-[#71717A]">
-            Built with an AI-native workflow.
-          </p>
+          <div className="flex items-center gap-4">
+            <p className="text-xs text-[#71717A]">
+              Built with an AI-native workflow.
+            </p>
+            <a
+              href="http://linkedin.com/company/disrupt-hub"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Disrupt Hub on LinkedIn"
+              className="text-[#71717A] hover:text-white transition-colors duration-150"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57A1.46 1.46 0 0 1 14.38 12.11A1.46 1.46 0 0 1 15.84 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS — Disrupt.hub
+   ───────────────────────────────────────────── */
+@theme {
+  /* Fonts */
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  /* Brand palette */
+  --color-brand-purple: #8B5CF6;
+  --color-brand-purple-light: #A78BFA;
+  --color-brand-purple-dark: #6D28D9;
+  --color-brand-blue: #3B82F6;
+  --color-brand-blue-dark: #2563EB;
+
+  /* Surface / background */
+  --color-surface: #FAFAFA;
+  --color-surface-alt: #F4F4F6;
+  --color-surface-dark: #0F0F13;
+  --color-surface-card: #FFFFFF;
+
+  /* Text */
+  --color-text-primary: #0D0D12;
+  --color-text-secondary: #52525B;
+  --color-text-muted: #A1A1AA;
+  --color-text-inverse: #FAFAFA;
+
+  /* Border */
+  --color-border: #E4E4E7;
+  --color-border-strong: #D4D4D8;
+
+  /* Spacing extras */
+  --spacing-section: 6rem;
+  --spacing-section-sm: 4rem;
+
+  /* Border radius */
+  --radius-card: 1rem;
+  --radius-pill: 999px;
+  --radius-button: 0.5rem;
+
+  /* Shadow scale */
+  --shadow-card: 0 1px 4px 0 rgb(0 0 0 / 0.06), 0 4px 24px 0 rgb(0 0 0 / 0.04);
+  --shadow-card-hover: 0 8px 40px 0 rgb(139 92 246 / 0.18), 0 2px 8px 0 rgb(0 0 0 / 0.06);
+  --shadow-glow-purple: 0 0 40px 0 rgb(139 92 246 / 0.35);
+  --shadow-glow-blue: 0 0 40px 0 rgb(59 130 246 / 0.25);
+  --shadow-navbar: 0 1px 0 0 rgb(0 0 0 / 0.06), 0 4px 16px 0 rgb(0 0 0 / 0.04);
+}
+
+/* ─────────────────────────────────────────────
+   GLOBAL BASE STYLES
+   ───────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ─────────────────────────────────────────────
+   GRADIENT UTILITIES
+   ───────────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-brand-purple) 0%, var(--color-brand-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: var(--radius-card);
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-brand-purple), var(--color-brand-blue));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────
+   KEYFRAME ANIMATIONS
+   ───────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 16px 0 rgb(139 92 246 / 0.4); }
+  50%       { box-shadow: 0 0 32px 4px rgb(139 92 246 / 0.7); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* ─────────────────────────────────────────────
+   SCROLL REVEAL — toggled by JS Intersection Observer
+   ───────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger delays for child elements */
+.reveal-group > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-group > *:nth-child(2) { transition-delay: 100ms; }
+.reveal-group > *:nth-child(3) { transition-delay: 200ms; }
+.reveal-group > *:nth-child(4) { transition-delay: 300ms; }
+
+/* ─────────────────────────────────────────────
+   BUTTON SHIMMER EFFECT
+   ───────────────────────────────────────────── */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 60%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* ─────────────────────────────────────────────
+   NAVBAR SCROLL STATE
+   ───────────────────────────────────────────── */
+.navbar-scrolled {
+  background-color: rgba(250, 250, 250, 0.85) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-navbar);
+}
+
+/* ─────────────────────────────────────────────
+   CARD HOVER TRANSITIONS
+   ───────────────────────────────────────────── */
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ─────────────────────────────────────────────
+   PROCESS PHASE CONNECTOR LINE
+   ───────────────────────────────────────────── */
+.phase-connector {
+  position: relative;
+}
+.phase-connector::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -1.5rem;
+  width: 3rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-brand-purple), var(--color-brand-blue));
+  transform: translateY(-50%);
+}
+
+/* ─────────────────────────────────────────────
+   SECTION BACKGROUNDS
+   ───────────────────────────────────────────── */
+.section-alt {
+  background-color: var(--color-surface-alt);
+}
+
+.section-dark {
+  background-color: var(--color-surface-dark);
+  color: var(--color-text-inverse);
+}
+
+/* ─────────────────────────────────────────────
+   FOCUS / ACCESSIBILITY
+   ───────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-brand-purple);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─────────────────────────────────────────────
+   FORM INPUT FOCUS
+   ───────────────────────────────────────────── */
+.input-field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: #FFFFFF;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-button);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  appearance: none;
+}
+
+.input-field::placeholder {
+  color: var(--color-text-muted);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--color-brand-purple);
+  box-shadow: 0 0 0 3px rgb(139 92 246 / 0.12);
+}
+
+.input-field.error {
+  border-color: #EF4444;
+  box-shadow: 0 0 0 3px rgb(239 68 68 / 0.1);
+}

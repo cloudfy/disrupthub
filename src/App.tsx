@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import ProjectModel from '@/pages/Project'
 import { useEffect } from 'react'
 import { Layout } from '@/components/layout/Layout'
 import Home from '@/pages/Home'
@@ -25,6 +26,7 @@ export default function App() {
           <Route path="/how-we-build" element={<HowWeBuild />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/projectmodel" element={<ProjectModel />} />
           {/* Fallback — redirect unknown paths to home */}
           <Route path="*" element={<Home />} />
         </Routes>

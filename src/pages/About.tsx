@@ -26,6 +26,13 @@ const VALUES = [
 
 const TEAM = [
   {
+    name: 'Rasmus V. Foged',
+    title: 'Co-founder & CEO',
+    bio: 'Founder of Upodi a nordic fintech startup for billing and payments automation. Helped more than 130 companies with subscription implementations.',
+    initials: 'RF',
+    color: '#8B5CF6',
+  },
+  {
     name: 'Alex Thornton',
     title: 'Co-founder & CTO',
     bio: 'Spent a decade building billing and payment infrastructure at fintech scale. Now obsessed with applying AI to the hard parts of software operations.',
@@ -34,11 +41,13 @@ const TEAM = [
   },
   {
     name: 'Sara Lindqvist',
-    title: 'Co-founder & Head of Delivery',
+    title: 'Head of Delivery',
     bio: 'Former engineering lead at a Nordic energy major. Specialises in legacy modernisation and building high-trust delivery cultures.',
     initials: 'SL',
     color: '#3B82F6',
-  },
+  }
+  /*
+  ,
   {
     name: 'Marcus Holt',
     title: 'Principal AI Engineer',
@@ -53,6 +62,7 @@ const TEAM = [
     initials: 'NP',
     color: '#8B5CF6',
   },
+  */
 ]
 
 const STATS = [

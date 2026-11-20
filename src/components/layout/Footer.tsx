@@ -5,6 +5,7 @@ const FOOTER_LINKS = {
   Company: [
     { to: '/about', label: 'About Us' },
     { to: '/how-we-build', label: 'How We Build' },
+    { to: '/projectmodel', label: 'Our Project Model' },
     { to: '/contact', label: 'Contact' },
   ],
   Services: [
